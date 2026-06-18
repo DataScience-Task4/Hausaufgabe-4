@@ -1,0 +1,13 @@
+services:
+  tests:
+    build: .
+    volumes:
+      - .:/app
+    command: pytest test_find_single.py -v
+
+  run:
+    build: .
+    volumes:
+      - .:/app
+    command: python -c "from find_single import find_single; import sys; print(find_single(list(map(int, sys.argv[1:]))))"
+    # Beispiel-Aufruf: docker compose run run 1 2 3 4 3 1 2
