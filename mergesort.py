@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+
+
 def ASSIGNMENT(new_list, i, old_list, j):
     new_list[i] = old_list[j]
 
@@ -39,13 +42,22 @@ def mergeSort(list_to_sort_by_merge):
             i += 1
 
 
-import matplotlib.pyplot as plt
-
 my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-x = range(len(my_list))
-plt.plot(x, my_list)
-plt.show()
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+
+ax1.bar(range(len(my_list)), my_list, color="steelblue")
+ax1.set_title("Unsortiert")
+ax1.set_xlabel("Index")
+ax1.set_ylabel("Wert")
+
 mergeSort(my_list)
-x = range(len(my_list))
-plt.plot(x, my_list)
+
+ax2.bar(range(len(my_list)), my_list, color="seagreen")
+ax2.set_title("Sortiert")
+ax2.set_xlabel("Index")
+ax2.set_ylabel("Wert")
+
+plt.suptitle("Mergesort Algorithmus – Vorher und Nachher")
+plt.tight_layout()
 plt.show()
