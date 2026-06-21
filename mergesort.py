@@ -19,7 +19,7 @@ def merge_sort(items: list[int]) -> None:
         merge_sort(left_half)
         merge_sort(right_half)
 
-        # Clear tracking indices 
+        # Clear tracking indices
         left_idx = 0
         right_idx = 0
         merged_idx = 0
@@ -47,20 +47,36 @@ def merge_sort(items: list[int]) -> None:
             merged_idx += 1
 
 
-def plot_list_state(data: list[int], title: str) -> None:
-    """Renders a simple line plot showing the values of a list.
+def plot_list_state(data: list[int], title: str, plot_type: str = "line") -> None:
+    """Renders a clean plot showing the values of a list according to lecture standards.
 
     Args:
         data: The dataset sequence to plot.
         title: Title of the visualization.
+        plot_type: The type of plot to draw ("scatter" or "line").
     """
     indices = range(len(data))
-    plt.figure(figsize=(7, 4))
-    plt.plot(indices, data, marker="o", linestyle="-", color="royalblue")
+    plt.figure(figsize=(6, 4))
+
+    if plot_type == "scatter":
+        plt.scatter(
+            indices, data, color="crimson", marker="o", label="Unsorted Data"
+        )
+    else:
+        plt.plot(
+            indices,
+            data,
+            color="forestgreen",
+            marker="s",
+            linestyle="-",
+            label="Sorted Data",
+        )
+
     plt.title(title)
     plt.xlabel("Position Index")
     plt.ylabel("Data Value")
-    plt.grid(True, linestyle="--", alpha=0.5)
+    plt.grid(True, linestyle=":")
+    plt.legend()
     plt.tight_layout()
     plt.show()
 
@@ -68,9 +84,10 @@ def plot_list_state(data: list[int], title: str) -> None:
 if __name__ == "__main__":
     my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 
-    # Reusing plot function to keep the execution stream clean (DRY)
-    plot_list_state(my_list, "Array State: Before Merge Sort")
+    # Plot 1: Unsorted State using the enhanced crimson scatter plot
+    plot_list_state(my_list, "Array State: Before Merge Sort", plot_type="scatter")
 
     merge_sort(my_list)
 
-    plot_list_state(my_list, "Array State: After Merge Sort")
+    # Plot 2: Sorted State using the enhanced forestgreen line plot
+    plot_list_state(my_list, "Array State: After Merge Sort", plot_type="line")
