@@ -41,11 +41,30 @@ def mergeSort(list_to_sort_by_merge):
 
 import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
+
 my_list = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 x = range(len(my_list))
-plt.plot(x, my_list)
+
+# Plot 1: Unsorted State
+plt.figure(figsize=(6, 4))
+plt.scatter(x, my_list, color="crimson", marker="o", label="Unsorted")
+plt.title("Array State: Before Mergesort")
+plt.xlabel("Index")
+plt.ylabel("Value")
+plt.grid(True, linestyle=":")
+plt.legend()
 plt.show()
+
 mergeSort(my_list)
+
+# Plot 2: Sorted State
 x = range(len(my_list))
-plt.plot(x, my_list)
+plt.figure(figsize=(6, 4))
+plt.plot(x, my_list, color="forestgreen", marker="s", linestyle="-", label="Sorted")
+plt.title("Array State: After Mergesort")
+plt.xlabel("Index")
+plt.ylabel("Value")
+plt.grid(True, linestyle=":")
+plt.legend()
 plt.show()
